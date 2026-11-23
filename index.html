@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dzhumar Dzhudzhuza — ArchViz artist. Unreal Engine 5 and 3ds Max: interiors, exteriors and interactive real-time real estate projects.">
+<meta property="og:title" content="Dzhumar Dzhudzhuza — ArchViz Artist">
+<meta property="og:description" content="Unreal Engine 5 · 3ds Max · interactive real estate projects">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/avatar.jpg">
+<title>Dzhumar Dzhudzhuza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cinematic render reel — full-bleed plates, captions set like render-pass labels; one deliberate dark look (projection room) */
+:root {
+  --bg: #0f1113;        /* projection room */
+  --panel: #171a1d;
+  --fg: #f1efea;
+  --muted: #9aa0a6;
+  --line: #262a2e;
+  --accent: #d98552;    /* copper fin, Beta Stores facade */
+  --display: 'Unbounded', 'Manrope', system-ui, sans-serif;
+  --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --gut: max(18px, env(safe-area-inset-left, 0px));
+  --gutr: max(18px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+html[lang="en"] .ru, html[lang="ru"] .en { display: none !important; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: var(--gut); padding-right: var(--gutr); }
+.label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(15,17,19,.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+.brand span { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .02em; }
+.bar nav { display: flex; gap: 22px; }
+.bar nav a { text-decoration: none; font-size: 14px; color: var(--muted); }
+.bar nav a:hover { color: var(--fg); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+.lang button { font: 500 11px var(--mono); background: none; border: 0; color: var(--muted); padding: 5px 10px; border-radius: 999px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+
+/* hero: the render is the thesis */
+.hero { position: relative; min-height: min(78svh, 760px); display: flex; align-items: flex-end; overflow: hidden; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,17,19,.15) 0%, rgba(15,17,19,.25) 40%, rgba(15,17,19,.92) 88%, var(--bg) 100%); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; padding-block: 40px 36px; }
+.hero h1 { font-family: var(--display); font-weight: 600; font-size: clamp(38px, 9vw, 92px); line-height: .95; letter-spacing: -.03em; margin: 12px 0 14px; text-wrap: balance; }
+.hero .role { font-size: clamp(16px, 2.2vw, 21px); margin: 0 0 22px; color: #dcdad4; }
+.hero .role b { color: var(--accent); font-weight: 700; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(241,239,234,.35); background: rgba(15,17,19,.35); backdrop-filter: blur(6px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #17110c; }
+.btn:hover { border-color: var(--fg); }
+.caption { position: absolute; right: var(--gutr); top: 16px; z-index: 1; }
+
+/* intro */
+.intro .wrap { display: grid; grid-template-columns: auto 1fr; gap: 20px 28px; align-items: center; padding-block: 36px 8px; }
+.intro img { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); }
+.intro p { margin: 0; color: #cfccc5; font-size: clamp(16px, 1.8vw, 19px); max-width: 62ch; }
+.stats { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 12px; }
+.stats div { padding: 14px 0 14px 16px; border-left: 1px solid var(--line); min-width: 0; }
+.stats div:first-child { border-left: 0; padding-left: 0; }
+.stats strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(17px, 2vw, 22px); margin-top: 2px; }
+
+section { padding-block: 64px 8px; }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; flex-wrap: wrap; }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw, 38px); line-height: 1.1; letter-spacing: -.02em; margin: 8px 0 0; text-wrap: balance; }
+
+/* project plates */
+.project { margin-bottom: 56px; }
+.main { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; }
+.main img { width: 100%; height: 100%; object-fit: cover; }
+.tag { position: absolute; left: 12px; top: 12px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; background: rgba(15,17,19,.7); padding: 5px 9px; border-radius: 4px; backdrop-filter: blur(4px); }
+.strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.strip img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; }
+.strip.one { grid-template-columns: 1fr; }
+.strip.one img { aspect-ratio: 21 / 8; }
+.vstrip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.vstrip img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
+.info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
+.info h3 { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 6px; letter-spacing: -.01em; }
+.info p { margin: 0; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chip { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: #cfccc5; }
+.role-box { border-left: 2px solid var(--accent); padding-left: 14px; }
+.role-box p { color: #dcdad4; }
+
+/* personal */
+.cards { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; align-items: start; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.card img { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; }
+.card .body { padding: 18px; display: grid; gap: 8px; }
+.card h3 { font-family: var(--display); font-weight: 600; font-size: 19px; margin: 0; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+.stack { display: grid; gap: 14px; }
+.go { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: none; }
+.go:hover { text-decoration: underline; }
+
+/* skills + path */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.sk { display: grid; gap: 18px; }
+.sk h4 { margin: 0 0 8px; font-size: 14px; font-weight: 700; }
+.tl { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.tl li { padding: 16px 0 16px 20px; border-left: 1px solid var(--line); position: relative; }
+.tl li::before { content: ""; position: absolute; left: -5px; top: 22px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.tl h4 { margin: 4px 0 2px; font-size: 17px; }
+.tl p { margin: 0; color: var(--muted); font-size: 15px; }
+
+.story { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 760px; }
+.story p { font-family: var(--display); font-weight: 400; font-size: clamp(18px, 2.4vw, 26px); line-height: 1.4; margin: 0; letter-spacing: -.01em; }
+.story p em { font-style: normal; color: var(--accent); }
+
+/* contact */
+.contact { margin-top: 72px; border-top: 1px solid var(--line); }
+.contact .wrap { padding-block: 56px 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: end; }
+.mail { font-family: var(--display); font-size: clamp(20px, 3.6vw, 34px); font-weight: 400; word-break: break-all; margin: 10px 0 14px; }
+.rows { display: grid; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 700; }
+.row:hover { color: var(--accent); }
+.copy { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; background: var(--fg); color: var(--bg); border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+footer .wrap { padding-block: 0 32px; }
+
+/* phone */
+@media (max-width: 760px) {
+  .bar nav { display: none; }
+  .hero { min-height: 78svh; }
+  .hero > img { object-position: 60% 50%; }
+  .caption { display: none; }
+  .intro .wrap { grid-template-columns: 64px 1fr; gap: 14px 16px; }
+  .intro img { width: 64px; height: 64px; }
+  .intro p { font-size: 15.5px; }
+  .stats div { padding-left: 12px; }
+  .stats strong { font-size: 16px; }
+  .main { aspect-ratio: 4 / 3; border-radius: 6px; }
+  .strip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-right: calc(-1 * var(--gutr)); padding-right: var(--gutr); scrollbar-width: none; }
+  .strip::-webkit-scrollbar { display: none; }
+  .strip img { flex: 0 0 78%; scroll-snap-align: start; aspect-ratio: 4 / 3; }
+  .strip.one img { flex-basis: 100%; aspect-ratio: 16 / 9; }
+  .strip.one { margin-right: 0; padding-right: 0; }
+  .vstrip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-right: calc(-1 * var(--gutr)); padding-right: var(--gutr); scrollbar-width: none; }
+  .vstrip::-webkit-scrollbar { display: none; }
+  .vstrip img { flex: 0 0 68%; scroll-snap-align: start; }
+  .info, .two, .cards, .contact .wrap { grid-template-columns: 1fr; gap: 20px; }
+  section { padding-block: 48px 4px; }
+  .project { margin-bottom: 44px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero > img { animation: drift 18s ease-out both; }
+  @keyframes drift { from { transform: scale(1.06); } to { transform: scale(1); } }
+}
+</style>
+</head>
+<body>
+
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/avatar.jpg" alt="" width="30" height="30"><span>Dzhumar</span></a>
+    <nav aria-label="Sections">
+      <a href="#work"><span class="en">Work</span><span class="ru">Проекты</span></a>
+      <a href="#skills"><span class="en">Skills</span><span class="ru">Навыки</span></a>
+      <a href="#contact"><span class="en">Contact</span><span class="ru">Контакты</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="lang-en" data-l="en" aria-pressed="true">EN</button>
+      <button type="button" id="lang-ru" data-l="ru" aria-pressed="false">RU</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <img src="img/forte-aerial.jpg" alt="Forte Village, real-time aerial view in Unreal Engine 5" fetchpriority="high">
+    <span class="label caption">Forte Village · UE5 · real-time</span>
+    <div class="wrap">
+      <span class="label"><span class="en">Bishkek · open to remote work</span><span class="ru">Бишкек · готов к удалённой работе</span></span>
+      <h1><span class="en">Dzhumar<br>Dzhudzhuza</span><span class="ru">Джумар<br>Джуджуза</span></h1>
+      <p class="role"><span class="en">ArchViz Artist · <b>Unreal Engine 5</b> · 3ds Max</span><span class="ru">Художник по архвизу · <b>Unreal Engine 5</b> · 3ds Max</span></p>
+      <div class="cta">
+        <a class="btn primary" href="#work"><span class="en">View work</span><span class="ru">Смотреть работы</span></a>
+        <a class="btn" href="https://www.behance.net/9697bba5" target="_blank" rel="noopener">Behance ↗</a>
+        <a class="btn" href="https://youtube.com/playlist?list=PLMA68-8EdbMQ" target="_blank" rel="noopener">YouTube ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro">
+    <div class="wrap">
+      <img src="img/avatar.jpg" alt="Dzhumar Dzhudzhuza" width="92" height="92">
+      <p><span class="en">Interiors, exteriors and interactive real-time projects for real estate. I take a scene from the first model to the final frame: modeling, lighting, vegetation and optimization.</span><span class="ru">Интерьеры, экстерьеры и интерактивные проекты недвижимости в реальном времени. Веду сцену от первой модели до финального кадра: моделирование, свет, растительность и оптимизация.</span></p>
+      <div class="stats">
+        <div><span class="label"><span class="en">Experience</span><span class="ru">Опыт</span></span><strong><span class="en">4 years</span><span class="ru">4 года</span></strong></div>
+        <div><span class="label"><span class="en">Unreal Engine</span><span class="ru">Unreal Engine</span></span><strong><span class="en">3 years</span><span class="ru">3 года</span></strong></div>
+        <div><span class="label"><span class="en">Modeling</span><span class="ru">Моделинг</span></span><strong>3ds Max</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label"><span class="en">Commercial work · InnoSpace</span><span class="ru">Коммерческие проекты · InnoSpace</span></span>
+        <h2><span class="en">Interactive real estate apps</span><span class="ru">Интерактивные проекты недвижимости</span></h2></div>
+      </div>
+
+      <article class="project">
+        <div class="main"><img src="img/forte-aerial2.jpg" alt="Forte Village, central alley from above" loading="lazy"><span class="tag">Forte Village</span></div>
+        <div class="strip one">
+          <img src="img/forte-park.jpg" alt="Forte Village, winter park" loading="lazy">
+        </div>
+        <div class="info">
+          <div>
+            <h3>Forte Village</h3>
+            <p><span class="en">Cottage community app in Unreal Engine 5: hundreds of houses, forest and mountains, with time of day and weather switching.</span><span class="ru">Приложение коттеджного посёлка на Unreal Engine 5: сотни домов, лес и горы, смена времени суток и погоды.</span></p>
+            <div class="chips"><span class="chip">UE5</span><span class="chip">3ds Max</span><span class="chip">PCG</span><span class="chip">Foliage</span><span class="chip">Nanite</span></div>
+          </div>
+          <div class="role-box"><span class="label"><span class="en">My role</span><span class="ru">Моя роль</span></span><p><span class="en">Modeled all buildings, set up lighting, built vegetation with PCG and Foliage, optimized the scene for real time.</span><span class="ru">Смоделировал все здания, настроил свет, сделал растительность через PCG и Foliage, оптимизировал сцену под real-time.</span></p></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="main"><img src="img/beta-street.jpg" alt="Beta Stores, shopping center entrance with LED facade" loading="lazy"><span class="tag">Beta Stores</span></div>
+        <div class="strip">
+          <img src="img/beta-tower.jpg" alt="Beta Stores, residential tower" loading="lazy">
+          <img src="img/beta-aerial2.jpg" alt="Beta Stores, towers in the city block" loading="lazy">
+        </div>
+        <div class="info">
+          <div>
+            <h3>Beta Stores</h3>
+            <p><span class="en">Two residential towers with a shopping center, presented in their city block as an interactive Unreal Engine 5 app.</span><span class="ru">Две жилые башни с торговым центром в городском квартале — интерактивное приложение на Unreal Engine 5.</span></p>
+            <div class="chips"><span class="chip">UE5</span><span class="chip">3ds Max</span><span class="chip">PCG</span><span class="chip">Foliage</span><span class="chip">Nanite</span></div>
+          </div>
+          <div class="role-box"><span class="label"><span class="en">My role</span><span class="ru">Моя роль</span></span><p><span class="en">Building models, lighting, vegetation and real-time optimization.</span><span class="ru">Модели зданий, свет, растительность и оптимизация под real-time.</span></p></div>
+        </div>
+      </article>
+
+      <div class="head">
+        <div><span class="label"><span class="en">Personal projects</span><span class="ru">Личные проекты</span></span>
+        <h2><span class="en">Interiors and exteriors</span><span class="ru">Интерьеры и экстерьеры</span></h2></div>
+      </div>
+      <article class="project">
+        <div class="main"><img src="img/int-table.jpg" alt="Living room close-up: ribbed sofa, round coffee table with books and a vase" loading="lazy"><span class="tag">Cinematic Interiors</span></div>
+        <div class="strip">
+          <img src="img/int-living.jpg" alt="Living room with sheer curtains, floor lamp and gallery wall" loading="lazy">
+          <img src="img/int-kitchen.jpg" alt="Kitchen and dining area with cane chairs and wall paneling" loading="lazy">
+        </div>
+        <div class="info">
+          <div>
+            <h3><span class="en">Cinematic Interiors</span><span class="ru">Кинематографичные интерьеры</span></h3>
+            <p><span class="en">Interior visualizations in Unreal Engine 5 with Lumen: light, atmosphere and composition. Final video rendered with Movie Render Queue.</span><span class="ru">Визуализации интерьеров в Unreal Engine 5 с Lumen: свет, атмосфера и композиция. Финальное видео через Movie Render Queue.</span></p>
+            <div class="chips"><span class="chip">UE5</span><span class="chip">Lumen</span><span class="chip">3ds Max</span><span class="chip">Movie Render Queue</span></div>
+          </div>
+          <div class="role-box"><span class="label"><span class="en">Video</span><span class="ru">Видео</span></span><p><a class="go" href="https://www.youtube.com/watch?v=7RsqfeP0SVU&amp;list=PLMA68-8EdbMQ&amp;index=2" target="_blank" rel="noopener"><span class="en">Watch the video ↗</span><span class="ru">Смотреть видео ↗</span></a></p></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="main"><img src="img/apt-living.jpg" alt="Open-plan apartment: wooden kitchen island, dining table, arched opening" loading="lazy"><span class="tag">Interactive Tour</span></div>
+        <div class="strip">
+          <img src="img/apt-lamp.jpg" alt="Paper pendant lamp over a dining table with wooden shelving" loading="lazy">
+          <img src="img/apt-desk.jpg" alt="Bedroom desk nook with a sculpted mirror and oak chair" loading="lazy">
+        </div>
+        <div class="info">
+          <div>
+            <h3><span class="en">Apartment Interactive Tour</span><span class="ru">Интерактивный тур по квартире</span></h3>
+            <p><span class="en">Walk-through real-time tour of an apartment, plus a cinematic version of the same scene. Lightmap UVs in RizomUV, baked lighting with GPU Lightmass.</span><span class="ru">Интерактивная прогулка по квартире в реальном времени и кино-версия той же сцены. Лайтмапы в RizomUV, запечённый свет GPU Lightmass.</span></p>
+            <div class="chips"><span class="chip">UE5</span><span class="chip">3ds Max</span><span class="chip">RizomUV</span><span class="chip">GPU Lightmass</span></div>
+          </div>
+          <div class="role-box"><span class="label"><span class="en">Video</span><span class="ru">Видео</span></span><p><a class="go" href="https://youtu.be/5Vpc5F0H1A4" target="_blank" rel="noopener"><span class="en">Watch the tour ↗</span><span class="ru">Смотреть тур ↗</span></a></p></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="vstrip">
+          <img src="img/ai-house.jpg" alt="Concrete house in a pine forest with floating stone steps at sunset" loading="lazy">
+          <img src="img/ai-waterfall.jpg" alt="Water curtain falling into a pool beside a glass facade" loading="lazy">
+          <img src="img/ai-leaf.jpg" alt="Leaf on a reflecting pool with golden light" loading="lazy">
+          <img src="img/ai-man.jpg" alt="Man at a window looking at a sunlit pine forest" loading="lazy">
+        </div>
+        <div class="info">
+          <div>
+            <h3><span class="en">AI Animation · Forest House</span><span class="ru">AI-анимация · Дом в лесу</span></h3>
+            <p><span class="en">Short vertical AI architectural film: a concrete house in a pine forest at golden hour, water, light and calm details.</span><span class="ru">Короткий вертикальный архитектурный AI-ролик: бетонный дом в сосновом лесу на закате, вода, свет и спокойные детали.</span></p>
+            <div class="chips"><span class="chip">AI video</span><span class="chip">9:16</span></div>
+          </div>
+          <div class="role-box"><span class="label"><span class="en">Video</span><span class="ru">Видео</span></span><p><a class="go" href="https://www.youtube.com/shorts/2Lure38CoIQ" target="_blank" rel="noopener"><span class="en">Watch the video ↗</span><span class="ru">Смотреть видео ↗</span></a></p></div>
+        </div>
+      </article>
+
+      <article class="card"><div class="body">
+        <span class="label">3ds Max · UE5 · 2024</span>
+        <h3>1567 Broadway, New York</h3>
+        <p><span class="en">High-rise model on Times Square. Unreleased — shown privately on request.</span><span class="ru">Модель высотки на Таймс-сквер. Проект ещё не вышел — покажу лично по запросу.</span></p>
+      </div></article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap two">
+      <div>
+        <span class="label"><span class="en">Toolkit</span><span class="ru">Инструменты</span></span>
+        <h2 style="margin-bottom:22px"><span class="en">Skills</span><span class="ru">Навыки</span></h2>
+        <div class="sk">
+          <div><h4>Unreal Engine 5</h4><div class="chips"><span class="chip">Lumen</span><span class="chip">GPU Lightmass</span><span class="chip">Post Process</span><span class="chip">Sequencer</span><span class="chip">Movie Render Queue</span><span class="chip">Blueprint</span></div></div>
+          <div><h4><span class="en">Environment & optimization</span><span class="ru">Окружение и оптимизация</span></h4><div class="chips"><span class="chip">PCG</span><span class="chip">Foliage</span><span class="chip">Nanite</span></div></div>
+          <div><h4><span class="en">AI tools</span><span class="ru">ИИ-инструменты</span></h4><p style="margin:0;color:var(--muted)"><span class="en">I actively use AI tools to optimize and speed up my work.</span><span class="ru">Активно пользуюсь ИИ-инструментами, чтобы оптимизировать и ускорять работу.</span></p></div>
+          <div><h4><span class="en">Modeling</span><span class="ru">Моделирование</span></h4><div class="chips"><span class="chip">3ds Max</span><span class="chip">RizomUV</span><span class="chip">Archicad</span><span class="chip"><span class="en">Drawings</span><span class="ru">Чертежи</span></span></div></div>
+        </div>
+      </div>
+      <div>
+        <span class="label"><span class="en">Path</span><span class="ru">Путь</span></span>
+        <h2 style="margin-bottom:22px"><span class="en">Experience</span><span class="ru">Опыт</span></h2>
+        <ol class="tl">
+          <li><span class="label">2024 — <span class="en">now</span><span class="ru">сейчас</span></span><h4>InnoSpace</h4><p><span class="en">ArchViz artist · interactive UE5 real estate projects</span><span class="ru">Художник по архвизу · интерактивные проекты на UE5</span></p></li>
+          <li><span class="label">2022 — 2024</span><h4>Seven 3D, <span class="en">Bishkek</span><span class="ru">Бишкек</span></h4><p><span class="en">3D modeler · interiors and exteriors in 3ds Max and Unreal</span><span class="ru">3D-моделлер · интерьеры и экстерьеры в 3ds Max и Unreal</span></p></li>
+          <li><span class="label">2022 — 2026</span><h4><span class="en">Courses</span><span class="ru">Курсы</span></h4><p>Unreal Engine — DVIZ · 3ds Max — Gripinsky · Archicad</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap story">
+      <span class="label"><span class="en">Why 3D</span><span class="ru">Почему 3D</span></span>
+      <p><span class="en">I got into 3D back in school, watching impressive visualization videos and wanting to make the same. <em>Now it's my profession</em> — and I keep growing in ArchViz and real-time.</span><span class="ru">3D увлёкся ещё в школе: смотрел крутые ролики с визуализацией и хотел делать так же. <em>Теперь это моя профессия</em> — и я продолжаю расти в архвизе и real-time.</span></p>
+      <span class="label"><span class="en">Russian — fluent · English — A2</span><span class="ru">Русский — свободно · английский — A2</span></span>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <span class="label"><span class="en">Contact</span><span class="ru">Контакты</span></span>
+      <p class="mail" id="email">opndha@gmail.com</p>
+      <button class="copy" type="button" id="copy-email" data-copy="opndha@gmail.com"><span class="en">Copy email</span><span class="ru">Скопировать почту</span></button>
+    </div>
+    <div class="rows">
+      <a class="row" href="https://t.me/ker1movich" target="_blank" rel="noopener"><span>Telegram · @ker1movich</span><span>↗</span></a>
+      <a class="row" href="https://www.behance.net/9697bba5" target="_blank" rel="noopener"><span>Behance</span><span>↗</span></a>
+      <a class="row" href="https://youtube.com/playlist?list=PLMA68-8EdbMQ" target="_blank" rel="noopener"><span>YouTube</span><span>↗</span></a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap"><span class="label">© 2026 Dzhumar Dzhudzhuza</span></div></footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function setLang(l) {
+    root.lang = l;
+    document.querySelectorAll('.lang button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.l === l)); });
+    try { localStorage.setItem('dzh-lang', l); } catch (e) {}
+  }
+  var saved = 'en';
+  try { saved = localStorage.getItem('dzh-lang') || 'en'; } catch (e) {}
+  setLang(saved === 'ru' ? 'ru' : 'en');
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.l); }); });
+  document.getElementById('copy-email').addEventListener('click', function (ev) {
+    var btn = ev.currentTarget, text = btn.dataset.copy;
+    function sel() { var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = root.lang === 'ru' ? 'Скопировано' : 'Copied'; }, sel);
+    } else { sel(); }
+  });
+})();
+</script>
+
+</body>
+</html>
