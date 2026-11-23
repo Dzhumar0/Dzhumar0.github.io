@@ -107,6 +107,11 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .vtile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
 .vtile .play::before { width: 58px; height: 58px; margin: -29px 0 0 -29px; }
 .vtile .play::after { border-width: 10px 0 10px 16px; }
+.fintro { margin: -8px 0 18px; color: var(--muted); max-width: 62ch; }
+.fgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+.fcard { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-width: 0; }
+.fcard img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #f3f3f3; }
+.fcard figcaption { padding: 10px 12px; font-size: 13.5px; font-weight: 700; }
 .info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
 .info h3 { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 6px; letter-spacing: -.01em; }
 .info p { margin: 0; color: var(--muted); }
@@ -175,6 +180,8 @@ footer .wrap { padding-block: 0 32px; }
   .vstrip img, .vstrip .vtile { flex: 0 0 68%; scroll-snap-align: start; }
   .vtile img { flex: none; }
   .info, .two, .cards, .contact .wrap { grid-template-columns: 1fr; gap: 20px; }
+  .fgrid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .fcard figcaption { font-size: 12.5px; padding: 8px 10px; }
   section { padding-block: 48px 4px; }
   .project { margin-bottom: 44px; }
 }
@@ -336,6 +343,14 @@ footer .wrap { padding-block: 0 32px; }
           <div class="role-box"><span class="label"><span class="en">Video</span><span class="ru">Видео</span></span><p><a class="go" href="https://www.youtube.com/shorts/2Lure38CoIQ" target="_blank" rel="noopener"><span class="en">Watch the video ↗</span><span class="ru">Смотреть видео ↗</span></a></p></div>
         </div>
       </article>
+
+      <div class="head" id="furniture">
+        <div><span class="label"><span class="en">3D modeling · 3ds Max</span><span class="ru">3D-моделирование · 3ds Max</span></span>
+        <h2><span class="en">Furniture &amp; product design</span><span class="ru">Дизайн мебели и предметов</span></h2></div>
+        <a class="go" href="https://www.behance.net/9697bba5" target="_blank" rel="noopener"><span class="en">More on Behance ↗</span><span class="ru">Подробнее на Behance ↗</span></a>
+      </div>
+      <p class="fintro"><span class="en">Furniture and product concepts I designed and modeled in 3ds Max: sculptural shelving, wavy cabinets, tables, seating and a crystal teapot.</span><span class="ru">Концепты мебели и предметов, которые я придумал и смоделировал в 3ds Max: скульптурные стеллажи, волнистые комоды, столы, кресла и хрустальный чайник.</span></p>
+      <div class="fgrid"><figure class="fcard"><img src="img/fur-shelves.jpg" alt="Sculptural shelving" loading="lazy"><figcaption><span class="en">Sculptural shelving</span><span class="ru">Скульптурные стеллажи</span></figcaption></figure><figure class="fcard"><img src="img/fur-wave.jpg" alt="Wave shelf" loading="lazy"><figcaption><span class="en">Wave shelf</span><span class="ru">Стеллаж «Волна»</span></figcaption></figure><figure class="fcard"><img src="img/fur-chest.jpg" alt="Wavy chest of drawers" loading="lazy"><figcaption><span class="en">Wavy chest of drawers</span><span class="ru">Комод с волнистыми ящиками</span></figcaption></figure><figure class="fcard"><img src="img/fur-table.jpg" alt="Multi-level coffee table" loading="lazy"><figcaption><span class="en">Multi-level coffee table</span><span class="ru">Многоуровневый журнальный стол</span></figcaption></figure><figure class="fcard"><img src="img/fur-stools.jpg" alt="Cane stools" loading="lazy"><figcaption><span class="en">Cane stools</span><span class="ru">Табуреты с плетёным сиденьем</span></figcaption></figure><figure class="fcard"><img src="img/fur-lounge.jpg" alt="Lounge chair & sofa" loading="lazy"><figcaption><span class="en">Lounge chair & sofa</span><span class="ru">Кресло и диван</span></figcaption></figure><figure class="fcard"><img src="img/fur-teapot.jpg" alt="Cut-crystal teapot" loading="lazy"><figcaption><span class="en">Cut-crystal teapot</span><span class="ru">Хрустальный чайник</span></figcaption></figure><figure class="fcard"><img src="img/fur-dress.jpg" alt="Dress chest" loading="lazy"><figcaption><span class="en">Dress chest</span><span class="ru">Комод-платье</span></figcaption></figure></div>
 
       <article class="card"><div class="body">
         <span class="label">3ds Max · UE5 · 2024</span>
