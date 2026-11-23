@@ -94,6 +94,19 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .strip.one img { aspect-ratio: 21 / 8; }
 .vstrip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .vstrip img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
+
+/* inline video */
+.video { position: relative; }
+.play { position: absolute; inset: 0; display: grid; place-items: center; text-decoration: none; color: transparent; font-size: 0; z-index: 2; }
+.play > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.play::before { content: ""; position: absolute; left: 50%; top: 50%; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: var(--accent); box-shadow: 0 8px 28px rgba(0,0,0,.35); transition: transform .2s ease; }
+.play::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-35%, -50%); border-style: solid; border-width: 13px 0 13px 21px; border-color: transparent transparent transparent #fff; }
+.play:hover::before, .play:focus-visible::before { transform: scale(1.08); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 3; background: #000; }
+.vtile { position: relative; border-radius: 6px; overflow: hidden; min-width: 0; }
+.vtile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.vtile .play::before { width: 58px; height: 58px; margin: -29px 0 0 -29px; }
+.vtile .play::after { border-width: 10px 0 10px 16px; }
 .info { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 18px; }
 .info h3 { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 6px; letter-spacing: -.01em; }
 .info p { margin: 0; color: var(--muted); }
@@ -156,7 +169,8 @@ footer .wrap { padding-block: 0 32px; }
   .strip.one { margin-right: 0; padding-right: 0; }
   .vstrip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; margin-right: calc(-1 * var(--gutr)); padding-right: var(--gutr); scrollbar-width: none; }
   .vstrip::-webkit-scrollbar { display: none; }
-  .vstrip img { flex: 0 0 68%; scroll-snap-align: start; }
+  .vstrip img, .vstrip .vtile { flex: 0 0 68%; scroll-snap-align: start; }
+  .vtile img { flex: none; }
   .info, .two, .cards, .contact .wrap { grid-template-columns: 1fr; gap: 20px; }
   section { padding-block: 48px 4px; }
   .project { margin-bottom: 44px; }
@@ -256,7 +270,7 @@ footer .wrap { padding-block: 0 32px; }
         <h2><span class="en">Interiors and exteriors</span><span class="ru">Интерьеры и экстерьеры</span></h2></div>
       </div>
       <article class="project">
-        <div class="main"><img src="img/int-table.jpg" alt="Living room close-up: ribbed sofa, round coffee table with books and a vase" loading="lazy"><span class="tag">Cinematic Interiors</span></div>
+        <div class="main video"><img src="img/int-table.jpg" alt="Living room close-up: ribbed sofa, round coffee table with books and a vase" loading="lazy"><span class="tag">Cinematic Interiors</span><a class="play" href="https://www.youtube.com/watch?v=7RsqfeP0SVU&amp;list=PLMA68-8EdbMQ" target="_blank" rel="noopener" data-yt="7RsqfeP0SVU"><span class="en">Play video</span><span class="ru">Смотреть видео</span></a></div>
         <div class="strip">
           <img src="img/int-living.jpg" alt="Living room with sheer curtains, floor lamp and gallery wall" loading="lazy">
           <img src="img/int-kitchen.jpg" alt="Kitchen and dining area with cane chairs and wall paneling" loading="lazy">
@@ -272,7 +286,7 @@ footer .wrap { padding-block: 0 32px; }
       </article>
 
       <article class="project">
-        <div class="main"><img src="img/apt-living.jpg" alt="Open-plan apartment: wooden kitchen island, dining table, arched opening" loading="lazy"><span class="tag">Interactive Tour</span></div>
+        <div class="main video"><img src="img/apt-living.jpg" alt="Open-plan apartment: wooden kitchen island, dining table, arched opening" loading="lazy"><span class="tag">Interactive Tour</span><a class="play" href="https://youtu.be/5Vpc5F0H1A4" target="_blank" rel="noopener" data-yt="5Vpc5F0H1A4"><span class="en">Play tour</span><span class="ru">Смотреть тур</span></a></div>
         <div class="strip">
           <img src="img/apt-lamp.jpg" alt="Paper pendant lamp over a dining table with wooden shelving" loading="lazy">
           <img src="img/apt-desk.jpg" alt="Bedroom desk nook with a sculpted mirror and oak chair" loading="lazy">
@@ -289,7 +303,7 @@ footer .wrap { padding-block: 0 32px; }
 
       <article class="project">
         <div class="vstrip">
-          <img src="img/ai-house.jpg" alt="Concrete house in a pine forest with floating stone steps at sunset" loading="lazy">
+          <div class="vtile video"><img src="img/ai-house.jpg" alt="Concrete house in a pine forest with floating stone steps at sunset" loading="lazy"><a class="play" href="https://www.youtube.com/shorts/2Lure38CoIQ" target="_blank" rel="noopener" data-yt="2Lure38CoIQ"><span class="en">Play</span><span class="ru">Смотреть</span></a></div>
           <img src="img/ai-waterfall.jpg" alt="Water curtain falling into a pool beside a glass facade" loading="lazy">
           <img src="img/ai-leaf.jpg" alt="Leaf on a reflecting pool with golden light" loading="lazy">
           <img src="img/ai-man.jpg" alt="Man at a window looking at a sunlit pine forest" loading="lazy">
@@ -373,6 +387,24 @@ footer .wrap { padding-block: 0 32px; }
   try { saved = localStorage.getItem('dzh-lang') || 'en'; } catch (e) {}
   setLang(saved === 'ru' ? 'ru' : 'en');
   document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.l); }); });
+
+  // inline YouTube player (only when the page is opened directly, e.g. on GitHub Pages)
+  if (window.self === window.top) {
+    document.querySelectorAll('.play[data-yt]').forEach(function (a) {
+      a.addEventListener('click', function (ev) {
+        ev.preventDefault();
+        var box = a.parentElement;
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+        f.title = 'Video';
+        f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        f.allowFullscreen = true;
+        box.appendChild(f);
+        a.remove();
+        var tag = box.querySelector('.tag'); if (tag) tag.remove();
+      });
+    });
+  }
   document.getElementById('copy-email').addEventListener('click', function (ev) {
     var btn = ev.currentTarget, text = btn.dataset.copy;
     function sel() { var r = document.createRange(); r.selectNodeContents(document.getElementById('email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
