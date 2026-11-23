@@ -6,7 +6,7 @@
 <meta name="description" content="Dzhumar Dzhudzhuza — ArchViz artist. Unreal Engine 5 and 3ds Max: interiors, exteriors and interactive real-time real estate projects.">
 <meta property="og:title" content="Dzhumar Dzhudzhuza — ArchViz Artist">
 <meta property="og:description" content="Unreal Engine 5 · 3ds Max · interactive real estate projects">
-<meta property="og:image" content="img/og.jpg">
+<meta property="og:image" content="https://dzhumar0.github.io/img/og.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="img/avatar.jpg">
 <title>Dzhumar Dzhudzhuza</title>
@@ -14,20 +14,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: cinematic render reel — full-bleed plates, captions set like render-pass labels; one deliberate dark look (projection room) */
+/* Layout: render reel on a light gallery wall — full-bleed plates, captions set like render-pass labels; one deliberate light look */
 :root {
-  --bg: #0f1113;        /* projection room */
-  --panel: #171a1d;
-  --fg: #f1efea;
-  --muted: #9aa0a6;
-  --line: #262a2e;
-  --accent: #d98552;    /* copper fin, Beta Stores facade */
+  --bg: #efeeeb;        /* gallery wall, light concrete */
+  --panel: #ffffff;
+  --fg: #1b1d1f;
+  --fg2: #3c4044;
+  --muted: #666b70;
+  --line: #d8d5cf;
+  --accent: #b05a28;    /* copper fin, Beta Stores facade */
+  --hero-ink: #f6f4f0;
   --display: 'Unbounded', 'Manrope', system-ui, sans-serif;
   --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
   --gut: max(18px, env(safe-area-inset-left, 0px));
   --gutr: max(18px, env(safe-area-inset-right, 0px));
-  color-scheme: dark;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; }
@@ -41,7 +43,7 @@ img { display: block; max-width: 100%; }
 
 /* bar */
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
-.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(15,17,19,.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(239,238,235,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
@@ -56,21 +58,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* hero: the render is the thesis */
 .hero { position: relative; min-height: min(78svh, 760px); display: flex; align-items: flex-end; overflow: hidden; }
 .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
-.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,17,19,.15) 0%, rgba(15,17,19,.25) 40%, rgba(15,17,19,.92) 88%, var(--bg) 100%); }
-.hero .wrap { position: relative; z-index: 1; width: 100%; padding-block: 40px 36px; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,14,16,.05) 0%, rgba(12,14,16,.2) 40%, rgba(12,14,16,.78) 100%); }
+.hero .wrap { position: relative; z-index: 1; width: 100%; padding-block: 40px 36px; color: var(--hero-ink); }
+.hero .label { color: rgba(246,244,240,.8); }
 .hero h1 { font-family: var(--display); font-weight: 600; font-size: clamp(38px, 9vw, 92px); line-height: .95; letter-spacing: -.03em; margin: 12px 0 14px; text-wrap: balance; }
-.hero .role { font-size: clamp(16px, 2.2vw, 21px); margin: 0 0 22px; color: #dcdad4; }
-.hero .role b { color: var(--accent); font-weight: 700; }
+.hero .role { font-size: clamp(16px, 2.2vw, 21px); margin: 0 0 22px; color: rgba(246,244,240,.9); }
+.hero .role b { color: #f0a06c; font-weight: 700; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(241,239,234,.35); background: rgba(15,17,19,.35); backdrop-filter: blur(6px); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: #17110c; }
-.btn:hover { border-color: var(--fg); }
-.caption { position: absolute; right: var(--gutr); top: 16px; z-index: 1; }
+.btn { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; font-weight: 700; font-size: 14px; padding: 12px 18px; border-radius: 999px; border: 1px solid rgba(246,244,240,.5); background: rgba(12,14,16,.3); color: var(--hero-ink); backdrop-filter: blur(6px); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn:hover { border-color: #fff; }
+.caption { position: absolute; right: var(--gutr); top: 16px; z-index: 1; color: rgba(246,244,240,.85); }
 
 /* intro */
 .intro .wrap { display: grid; grid-template-columns: auto 1fr; gap: 20px 28px; align-items: center; padding-block: 36px 8px; }
 .intro img { width: 92px; height: 92px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line); }
-.intro p { margin: 0; color: #cfccc5; font-size: clamp(16px, 1.8vw, 19px); max-width: 62ch; }
+.intro p { margin: 0; color: var(--fg2); font-size: clamp(16px, 1.8vw, 19px); max-width: 62ch; }
 .stats { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 12px; }
 .stats div { padding: 14px 0 14px 16px; border-left: 1px solid var(--line); min-width: 0; }
 .stats div:first-child { border-left: 0; padding-left: 0; }
@@ -84,7 +87,7 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .project { margin-bottom: 56px; }
 .main { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; }
 .main img { width: 100%; height: 100%; object-fit: cover; }
-.tag { position: absolute; left: 12px; top: 12px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; background: rgba(15,17,19,.7); padding: 5px 9px; border-radius: 4px; backdrop-filter: blur(4px); }
+.tag { position: absolute; left: 12px; top: 12px; color: #f6f4f0; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; background: rgba(15,17,19,.7); padding: 5px 9px; border-radius: 4px; backdrop-filter: blur(4px); }
 .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 .strip img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 6px; }
 .strip.one { grid-template-columns: 1fr; }
@@ -95,9 +98,9 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .info h3 { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); margin: 0 0 6px; letter-spacing: -.01em; }
 .info p { margin: 0; color: var(--muted); }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-.chip { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: #cfccc5; }
+.chip { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--fg2); background: var(--panel); }
 .role-box { border-left: 2px solid var(--accent); padding-left: 14px; }
-.role-box p { color: #dcdad4; }
+.role-box p { color: var(--fg2); }
 
 /* personal */
 .cards { display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; align-items: start; }
@@ -125,7 +128,7 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .story p em { font-style: normal; color: var(--accent); }
 
 /* contact */
-.contact { margin-top: 72px; border-top: 1px solid var(--line); }
+.contact { margin-top: 72px; border-top: 1px solid var(--line); background: var(--panel); }
 .contact .wrap { padding-block: 56px 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: end; }
 .mail { font-family: var(--display); font-size: clamp(20px, 3.6vw, 34px); font-weight: 400; word-break: break-all; margin: 10px 0 14px; }
 .rows { display: grid; }
@@ -204,7 +207,7 @@ footer .wrap { padding-block: 0 32px; }
       <p><span class="en">Interiors, exteriors and interactive real-time projects for real estate. I take a scene from the first model to the final frame: modeling, lighting, vegetation and optimization.</span><span class="ru">Интерьеры, экстерьеры и интерактивные проекты недвижимости в реальном времени. Веду сцену от первой модели до финального кадра: моделирование, свет, растительность и оптимизация.</span></p>
       <div class="stats">
         <div><span class="label"><span class="en">Experience</span><span class="ru">Опыт</span></span><strong><span class="en">4 years</span><span class="ru">4 года</span></strong></div>
-        <div><span class="label"><span class="en">Unreal Engine</span><span class="ru">Unreal Engine</span></span><strong><span class="en">3 years</span><span class="ru">3 года</span></strong></div>
+        <div><span class="label">Unreal</span><strong><span class="en">3 years</span><span class="ru">3 года</span></strong></div>
         <div><span class="label"><span class="en">Modeling</span><span class="ru">Моделинг</span></span><strong>3ds Max</strong></div>
       </div>
     </div>
