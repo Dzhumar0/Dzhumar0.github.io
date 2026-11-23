@@ -113,6 +113,9 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(24px, 3.6vw
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .chip { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; color: var(--fg2); background: var(--panel); }
 .role-box { border-left: 2px solid var(--accent); padding-left: 14px; }
+.steps { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.steps li { position: relative; padding-left: 16px; color: var(--fg2); }
+.steps li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .role-box p { color: var(--fg2); }
 
 /* personal */
@@ -243,9 +246,15 @@ footer .wrap { padding-block: 0 32px; }
           <div>
             <h3>Forte Village</h3>
             <p><span class="en">Cottage community app in Unreal Engine 5: hundreds of houses, forest and mountains, with time of day and weather switching.</span><span class="ru">Приложение коттеджного посёлка на Unreal Engine 5: сотни домов, лес и горы, смена времени суток и погоды.</span></p>
-            <div class="chips"><span class="chip">UE5</span><span class="chip">3ds Max</span><span class="chip">PCG</span><span class="chip">Foliage</span><span class="chip">Nanite</span></div>
+            <div class="chips"><span class="chip">UE5</span><span class="chip">3ds Max</span><span class="chip">Level Instance</span><span class="chip">PCG</span><span class="chip">Foliage</span><span class="chip">Nanite</span></div>
           </div>
-          <div class="role-box"><span class="label"><span class="en">My role</span><span class="ru">Моя роль</span></span><p><span class="en">Modeled all buildings, set up lighting, built vegetation with PCG and Foliage, optimized the scene for real time.</span><span class="ru">Смоделировал все здания, настроил свет, сделал растительность через PCG и Foliage, оптимизировал сцену под real-time.</span></p></div>
+          <div class="role-box"><span class="label"><span class="en">My role</span><span class="ru">Моя роль</span></span><ul class="steps">
+<li><span class="en">Modeled every building from scratch in 3ds Max</span><span class="ru">С нуля смоделировал все здания в 3ds Max</span></li>
+<li><span class="en">Transferred the scene to Unreal Engine 5 and set up all materials</span><span class="ru">Перенёс сцену в Unreal Engine 5 и настроил все материалы</span></li>
+<li><span class="en">Placed the buildings across the masterplan with Level Instances</span><span class="ru">Расставил здания по генплану через Level Instance</span></li>
+<li><span class="en">Built the surroundings: trees and grass with PCG and Foliage</span><span class="ru">Собрал окружение: деревья и трава через PCG и Foliage</span></li>
+<li><span class="en">Set up lighting and optimized the scene for real time</span><span class="ru">Настроил освещение и оптимизировал сцену под real-time</span></li>
+</ul></div>
         </div>
       </article>
 
