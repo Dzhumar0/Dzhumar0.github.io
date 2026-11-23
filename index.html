@@ -235,7 +235,7 @@ footer .wrap { padding-block: 0 32px; }
       </div>
 
       <article class="project">
-        <div class="main"><img src="img/forte-aerial2.jpg" alt="Forte Village, central alley from above" loading="lazy"><span class="tag">Forte Village</span></div>
+        <div class="main video"><img src="img/forte-aerial2.jpg" alt="Forte Village, central alley from above" loading="lazy"><span class="tag">Forte Village</span><a class="play" href="https://www.youtube.com/watch?v=7ODL_1NJS6U" target="_blank" rel="noopener" data-yt="7ODL_1NJS6U"><span class="en">Play video</span><span class="ru">Смотреть видео</span></a></div>
         <div class="strip one">
           <img src="img/forte-park.jpg" alt="Forte Village, winter park" loading="lazy">
         </div>
@@ -250,7 +250,7 @@ footer .wrap { padding-block: 0 32px; }
       </article>
 
       <article class="project">
-        <div class="main"><img src="img/beta-street.jpg" alt="Beta Stores, shopping center entrance with LED facade" loading="lazy"><span class="tag">Beta Stores</span></div>
+        <div class="main video"><img src="img/beta-street.jpg" alt="Beta Stores, shopping center entrance with LED facade" loading="lazy"><span class="tag">Beta Stores</span><a class="play" href="https://www.youtube.com/watch?v=S2xO6spoRx8&amp;t=234s" target="_blank" rel="noopener" data-yt="S2xO6spoRx8" data-start="234"><span class="en">Play video</span><span class="ru">Смотреть видео</span></a></div>
         <div class="strip">
           <img src="img/beta-tower.jpg" alt="Beta Stores, residential tower" loading="lazy">
           <img src="img/beta-aerial2.jpg" alt="Beta Stores, towers in the city block" loading="lazy">
@@ -395,7 +395,7 @@ footer .wrap { padding-block: 0 32px; }
         ev.preventDefault();
         var box = a.parentElement;
         var f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+        f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0&playsinline=1&modestbranding=1' + (a.dataset.start ? '&start=' + a.dataset.start : '');
         f.title = 'Video';
         f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
         f.allowFullscreen = true;
